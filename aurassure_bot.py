@@ -1,5 +1,11 @@
 import asyncio
-asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+import sys
+
+if sys.platform.startswith("win"):
+    try:
+        asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+    except:
+        pass
 
 from playwright.sync_api import sync_playwright
 import os
